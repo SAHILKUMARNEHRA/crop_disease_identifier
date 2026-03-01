@@ -6,7 +6,6 @@ import CameraUpload from './components/CameraUpload';
 import ResultCard from './components/ResultCard';
 import Loader from './components/Loader';
 
-// Use environment variable for the API endpoint (defaults to local port 5001)
 const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT || 'http://localhost:5001/analyze';
 
 function App() {
@@ -41,8 +40,9 @@ function App() {
       setResult(response.data);
     } catch (err) {
       console.error('Analysis failed:', err);
-
-      setError(`Could not connect to the analysis server (${API_ENDPOINT}). If this is the first request, the backend might be waking up (can take 50s on Render). Please check your Vercel environment variables if the URL looks wrong.`);
+      setError(
+        `Could not connect to the analysis server (${API_ENDPOINT}). If this is your first request, the backend may still be waking up.`
+      );
     } finally {
       setLoading(false);
     }
@@ -57,26 +57,43 @@ function App() {
 
   return (
     <div className="container">
-      <header>
+      <header className="app-header">
+        <p className="eyebrow">Offline Smart Farming Assistant</p>
         <h1>CropScope</h1>
-        <p className="subtitle">AI Crop Disease Identifier</p>
+        <p className="subtitle">Detect crop diseases quickly from a leaf image and get treatment guidance in seconds.</p>
       </header>
 
+      <div className="quick-facts glass-panel">
+        <div className="fact">
+          <span className="fact-value">AI</span>
+          <span className="fact-label">disease detection</span>
+        </div>
+        <div className="fact">
+          <span className="fact-value">Fast</span>
+          <span className="fact-label">single tap analysis</span>
+        </div>
+        <div className="fact">
+          <span className="fact-value">Actionable</span>
+          <span className="fact-label">next-step treatment tips</span>
+        </div>
+      </div>
+
       <div className={`app-content ${result ? 'has-result' : ''}`}>
-        <section className="interaction-section">
-          <CameraUpload
-            onImageCapture={handleImageCapture}
-            selectedImage={previewUrl}
-            loading={loading}
-          />
+        <section className="interaction-section glass-panel">
+          <div className="section-topline">
+            <h2>Leaf Scanner</h2>
+            <p>Capture a clear image of the affected leaf for better results.</p>
+          </div>
+
+          <CameraUpload onImageCapture={handleImageCapture} selectedImage={previewUrl} loading={loading} />
 
           {previewUrl && !loading && !result && (
             <button className="analyze-btn" onClick={analyzeDisease}>
-              <span className="btn-icon">⚡</span> Analyze Leaf
+              Analyze Leaf
             </button>
           )}
 
-          {error && <div className="error-message glass-panel">{error}</div>}
+          {error && <div className="error-message">{error}</div>}
         </section>
 
         {result && (
@@ -89,7 +106,7 @@ function App() {
       {loading && <Loader />}
 
       <footer>
-        <p>© 2026 CropScope • Powered by AI for Sustainable Farming</p>
+        <p>Built for practical, field-ready crop diagnosis.</p>
       </footer>
     </div>
   );

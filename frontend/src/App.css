@@ -1,47 +1,109 @@
+.app-header {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.quick-facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.fact-value {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--heading-color);
+}
+
+.fact-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
 .app-content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 1.2rem;
   width: 100%;
 }
 
 .interaction-section {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1rem;
+  padding: 1.1rem;
+}
+
+.section-topline h2 {
+  font-size: 1.3rem;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.section-topline p {
+  color: var(--text-muted);
+  font-size: 0.94rem;
 }
 
 .analyze-btn {
   width: 100%;
-  padding: 20px;
-  background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
-  color: white;
-  border-radius: 12px;
-  font-size: 1.25rem;
-  box-shadow: 0 10px 20px rgba(27, 94, 32, 0.2);
+  padding: 0.95rem 1rem;
+  background: linear-gradient(120deg, var(--primary-dark), var(--primary-color));
+  color: #fff;
+  border-radius: 0.9rem;
+  font-size: 1rem;
+  box-shadow: 0 10px 22px rgba(24, 91, 70, 0.26);
 }
 
 .error-message {
-  padding: 15px;
-  background: rgba(211, 47, 47, 0.05);
-  border: 1px solid rgba(211, 47, 47, 0.2);
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  background: rgba(176, 46, 46, 0.08);
+  border: 1px solid rgba(176, 46, 46, 0.24);
   color: var(--error-color);
   text-align: center;
   font-weight: 600;
+  font-size: 0.9rem;
 }
 
 footer {
   text-align: center;
-  padding: 40px 0;
+  padding: 0.75rem 0 1.6rem;
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
+}
+
+@media (min-width: 700px) {
+  .quick-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 1.2rem 1.4rem;
+  }
 }
 
 @media (min-width: 992px) {
   .app-content.has-result {
     display: grid;
-    grid-template-columns: 450px 1fr;
-    gap: 40px;
+    grid-template-columns: minmax(360px, 440px) 1fr;
+    gap: 1.8rem;
     align-items: start;
+  }
+
+  .interaction-section {
+    padding: 1.4rem;
   }
 }
