@@ -1,0 +1,10 @@
+node_modules/
+venv/
+__pycache__/
+*.pyc
+*.keras
+*.h5
+.DS_Store
+dist/
+build/
+.env
