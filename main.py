@@ -4,7 +4,8 @@ import predict
 import os
 
 app = Flask(__name__)
-CORS(app)
+# Allow CORS for all origins and methods for production flexibility
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route("/", methods=["GET"])
 def index():

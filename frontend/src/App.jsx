@@ -42,7 +42,7 @@ function App() {
     } catch (err) {
       console.error('Analysis failed:', err);
 
-      setError('Could not connect to the analysis server. Please ensure the backend is running.');
+      setError(`Could not connect to the analysis server (${API_ENDPOINT}). If this is the first request, the backend might be waking up (can take 50s on Render). Please check your Vercel environment variables if the URL looks wrong.`);
     } finally {
       setLoading(false);
     }
