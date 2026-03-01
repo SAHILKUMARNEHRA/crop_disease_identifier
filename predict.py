@@ -5,7 +5,7 @@ import os
 
 print("Loading AI model...")
 # Using the correct path relative to the ml-service directory or project root
-MODEL_PATH = "ml-service/model.keras"
+MODEL_PATH = "model.keras"
 model = tf.keras.models.load_model(MODEL_PATH)
 print("Model loaded successfully!")
 
